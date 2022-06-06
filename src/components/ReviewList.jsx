@@ -3,13 +3,19 @@ import ReviewTab from './ReviewTab'
 
 
 
-const ReviewList = ({reviews}) => {
+const ReviewList = ({reviews, onDeleteItem}) => {
     
-    
+    const deleteRatingHandler = (id)=> {
+        onDeleteItem(id)
+    }
+
+    if(!reviews || reviews.length === 0){
+       return <p>No reviews available</p>
+    }
     return(
         <div>
-            {reviews.map((item)=>(
-                <ReviewTab key={item.id} rating={item.rating} text={item.text}/>
+            {reviews.map((items)=>(
+                <ReviewTab onDeleteRating={deleteRatingHandler} key={items.id} items={items}/>
             ))}
         </div>
   

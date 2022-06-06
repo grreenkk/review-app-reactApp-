@@ -1,13 +1,19 @@
+import {FaTimes} from 'react-icons/fa'
+import Card from './reuseables/Card'
 
-
-const ReviewTab = ({rating, text})=>{
-    
+const ReviewTab = ({items, onDeleteRating})=>{
+    const handleClick = () => {
+        onDeleteRating(items.id)
+    }
   
     return(
-        <div className="card">
-            <div className="num-section">{rating}</div>
-            <div className="text-section">{text}</div>    
-        </div>
+        <Card>
+            <div className="num-section">{items.rating}</div>
+            <button onClick={handleClick} className='close'>
+                <FaTimes color='#2d74df'/>
+            </button>
+            <div className="text-section">{items.text}</div>    
+        </Card>
     )
 }
 
