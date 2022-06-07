@@ -2,19 +2,20 @@ import { useState } from 'react'
 import Header from './components/Header'
 import ReviewData from './data/ReviewData'
 import ReviewList from './components/ReviewList'
+import ReviewStats from './components/ReviewStats'
 
 
 
 const App = () => {
-    const [reviewTexts, setReviewTexts] = useState(ReviewData)
+    const [reviews, setReviews] = useState(ReviewData)
 
     const deleteItem = (id) => {
         if(window.confirm('Are you sure you want to delete?')){
-            const curReviews = reviewTexts.filter((texts)=>{
+            const curReviews = reviews.filter((texts)=>{
                 return texts.id != id
             })        
     
-            setReviewTexts(curReviews)
+            setReviews(curReviews)
         }
     }
 
@@ -22,7 +23,8 @@ const App = () => {
         <>
             <Header text = 'Hello World'/>
             <div className="container">
-                <ReviewList reviews={reviewTexts} onDeleteItem={deleteItem}/>
+                <ReviewStats reviews={reviews} />
+                <ReviewList reviews={reviews} onDeleteItem={deleteItem}/>
             </div>
         </>    
     )

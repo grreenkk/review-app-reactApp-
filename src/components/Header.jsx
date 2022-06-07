@@ -28,7 +28,7 @@ Header.propTypes = {
 Header.defaultProps = {
     text: "Hello Africa",
     bgColor: 'rgba(0,0,0,0.4)',
-    textColor: '#ff6a95'
+    textColor: '#ffd30f'
 }
 
 export default Header

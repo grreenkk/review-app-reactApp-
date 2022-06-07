@@ -87,8 +87,8 @@ header {
 
 .rating li:hover,
 .num-section {
-  background: #ff6a95;
-  color: #fff;
+  background: #ffd30f;
+  color: #2d74df;
 }
 
 [type='radio'] {
@@ -118,8 +118,8 @@ input:focus {
   outline: none;
 }
 
-.feedback-stats {
-  color: #fff;
+.review-statistics {
+  color: #ffd30f;
   display: flex;
   justify-content: space-between;
   align-items: center;
