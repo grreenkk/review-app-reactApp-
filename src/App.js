@@ -3,6 +3,7 @@ import Header from './components/Header'
 import ReviewData from './data/ReviewData'
 import ReviewList from './components/ReviewList'
 import ReviewStats from './components/ReviewStats'
+import ReviewForm from './components/ReviewForm'
 
 
 
@@ -23,6 +24,7 @@ const App = () => {
         <>
             <Header text = 'Hello World'/>
             <div className="container">
+                <ReviewForm />
                 <ReviewStats reviews={reviews} />
                 <ReviewList reviews={reviews} onDeleteItem={deleteItem}/>
             </div>
