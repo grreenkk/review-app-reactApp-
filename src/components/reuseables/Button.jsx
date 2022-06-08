@@ -15,7 +15,7 @@ Button.PropTypes = {
 }
 
 Button.defaultProps = {
-    type: 'text',
+    type: 'submit',
     disable: false,
     version: 'primary'
 

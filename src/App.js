@@ -20,11 +20,18 @@ const App = () => {
         }
     }
 
+    const getSelectedValueHandler = (userRatings) => {
+        setReviews((prev)=>[userRatings, ...prev])
+            
+    }
+
+    console.log(reviews)
+
     return (
         <>
             <Header text = 'Hello World'/>
             <div className="container">
-                <ReviewForm />
+                <ReviewForm onSelectedValue={getSelectedValueHandler}/>
                 <ReviewStats reviews={reviews} />
                 <ReviewList reviews={reviews} onDeleteItem={deleteItem}/>
             </div>
