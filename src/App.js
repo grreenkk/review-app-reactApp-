@@ -1,9 +1,13 @@
 import { useState } from 'react'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Header from './components/Header'
 import ReviewData from './data/ReviewData'
 import ReviewList from './components/ReviewList'
 import ReviewStats from './components/ReviewStats'
 import ReviewForm from './components/ReviewForm'
+import AboutIconLink from './components/AboutIconLink'
+import AboutPage from './pages/AboutPage'
+
 
 
 
@@ -28,15 +32,29 @@ const App = () => {
     console.log(reviews)
 
     return (
-        <>
-            <Header text = 'Hello World'/>
-            <div className="container">
-                <ReviewForm onSelectedValue={getSelectedValueHandler}/>
-                <ReviewStats reviews={reviews} />
-                <ReviewList reviews={reviews} onDeleteItem={deleteItem}/>
-            </div>
-        </>    
+        
+            <Router>
+                <Header text = 'Review App'/>
+                <div className="container">
+                    <Routes>
+                        <Route exact path='/' element={
+                            <>
+                            <ReviewForm onSelectedValue={getSelectedValueHandler}/>
+                            <ReviewStats reviews={reviews} />
+                            <ReviewList reviews={reviews} onDeleteItem={deleteItem}/>
+                            </>
+                        }>
+                            
+                        </Route>
+                    
+
+                    <Route path='/about' element={<AboutPage/>}/>
+                </Routes>
+                <AboutIconLink/>
+                </div>
+            </Router>  
+       
     )
 }
 
-export default App
+export default App 

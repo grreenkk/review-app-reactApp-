@@ -21,6 +21,7 @@ ul {
   max-width: 768px;
   margin: auto;
   padding: 0 20px;
+  position: relative;
 }
 
 header {
@@ -190,6 +191,8 @@ input:focus {
 .about-link {
   display: flex;
   justify-content: flex-end;
+  position: absolute;
+  left: 165%;
 }
 
 /* FIX: Remove position: absolute to keep about icon at the bottom of the
@@ -200,7 +203,7 @@ input:focus {
 }
 
 .about-link a:hover {
-  color: #ff6a95;
+  color: #ffd30f;
 }
 
 .about h1 {
