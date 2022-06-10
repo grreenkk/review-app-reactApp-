@@ -1,18 +1,20 @@
 import {useState} from 'react'
 import ReviewTab from './ReviewTab'
 import {motion, AnimatePresence} from 'framer-motion'
+import { useContext } from 'react'
+import ReviewContext from './context/ReviewContext'
 
 
 
-const ReviewList = ({reviews, onDeleteItem}) => {
+
+const ReviewList = () => {
+    const {reviews} = useContext(ReviewContext)
     
-    const deleteRatingHandler = (id)=> {
-        onDeleteItem(id)
-    }
-
     if(!reviews || reviews.length === 0){
        return <p>No reviews available</p>
     }
+
+
 
 
     return(
@@ -25,7 +27,7 @@ const ReviewList = ({reviews, onDeleteItem}) => {
                         animate={{ opacity: 1 }} 
                         exit={{ opacity: 0 }}
                     >
-                        <ReviewTab onDeleteRating={deleteRatingHandler} key={items.id} items={items}/>
+                        <ReviewTab key={items.id} items={items}/>
                     </motion.div>
                 ))}
             </AnimatePresence>

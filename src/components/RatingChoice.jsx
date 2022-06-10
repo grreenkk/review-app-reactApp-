@@ -1,6 +1,9 @@
-import {useState} from 'react'
+import {useState, useContext} from 'react'
+
+
 
 const RatingChoice = ({onSelected}) => {
+    
     const [choice, setChoice] = useState()
 
     const selectHandler = (e) => {

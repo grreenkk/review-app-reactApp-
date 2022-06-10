@@ -1,4 +1,9 @@
-const ReviewStats = ({reviews}) => {
+import { useContext } from "react"
+import ReviewContext from "./context/ReviewContext"
+
+
+const ReviewStats = () => {
+    const {reviews} = useContext(ReviewContext)
     const totalReviews = reviews.length
 
     let averageRating = reviews.reduce((acc, cur)=>{

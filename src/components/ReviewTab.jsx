@@ -1,9 +1,13 @@
 import {FaTimes} from 'react-icons/fa'
 import Card from './reuseables/Card'
+import { useContext } from 'react'
+import ReviewContext from './context/ReviewContext'
 
 const ReviewTab = ({items, onDeleteRating})=>{
+    const {deleteReview} = useContext(ReviewContext)
     const handleClick = () => {
-        onDeleteRating(items.id)
+        
+        deleteReview(items.id)
     }
   
     return(

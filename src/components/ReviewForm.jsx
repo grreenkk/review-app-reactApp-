@@ -1,12 +1,13 @@
-import {useState} from 'react'
+import {useState, useContext} from 'react'
 import Card from './reuseables/Card'
 import Button from './reuseables/Button'
 import RatingChoice from './RatingChoice'
-import { v4 as uuidv4} from 'uuid'
+import ReviewContext from './context/ReviewContext'
 
 
 
-const ReviewForm = ({onSelectedValue}) => {
+const ReviewForm = () => {
+    const {addReview} = useContext(ReviewContext)
     const [ratingsText, setRatingsText] = useState('')
     const [isDisabled, setIsDisabled] = useState(true)
     const [message, setMessage] = useState('')
@@ -39,12 +40,11 @@ const ReviewForm = ({onSelectedValue}) => {
     const onSubmitHandler = (e) => {
         e.preventDefault()
         const payLoad = {
-            id: Math.random()*100,
             rating: ratingsss,
             text: ratingsText
         }
         
-        onSelectedValue(payLoad)
+        addReview(payLoad)
         
     }
     
