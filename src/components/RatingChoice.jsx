@@ -1,10 +1,19 @@
-import {useState, useContext} from 'react'
+import {useState, useContext, useEffect} from 'react'
+import ReviewContext from './context/ReviewContext'
+
 
 
 
 const RatingChoice = ({onSelected}) => {
-    
+    const {reviewEdit} = useContext(ReviewContext)
     const [choice, setChoice] = useState()
+    
+
+    useEffect(()=>{
+        setChoice(reviewEdit.item.rating)
+    }, [reviewEdit])
+    
+    
 
     const selectHandler = (e) => {
         setChoice(+e.currentTarget.value)

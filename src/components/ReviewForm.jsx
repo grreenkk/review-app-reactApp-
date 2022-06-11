@@ -1,22 +1,34 @@
-import {useState, useContext} from 'react'
+import {useState, useContext, useEffect} from 'react'
 import Card from './reuseables/Card'
 import Button from './reuseables/Button'
 import RatingChoice from './RatingChoice'
 import ReviewContext from './context/ReviewContext'
+import { v4 as uuidv4} from 'uuid'
 
 
 
 const ReviewForm = () => {
-    const {addReview} = useContext(ReviewContext)
+    const {addReview, reviewEdit, EditReview} = useContext(ReviewContext)
     const [ratingsText, setRatingsText] = useState('')
+    const [editId, setEditId] = useState('')
     const [isDisabled, setIsDisabled] = useState(true)
     const [message, setMessage] = useState('')
     const [ratingsss, setRatingsss] = useState()
     
+    useEffect(()=>{
+        if(reviewEdit.edit === true){
+            setRatingsText(reviewEdit.item.text)
+            setRatingsss(reviewEdit.item.rating)
+            setEditId(reviewEdit.item.id)
+            setIsDisabled(false)
+        }
+        
+    }, [reviewEdit] )
 
+     
     const textChangeHandler = (e) => {
 
-
+        
         setRatingsText(e.target.value)
 
         if (ratingsText.trim().length < 10) {
@@ -40,11 +52,22 @@ const ReviewForm = () => {
     const onSubmitHandler = (e) => {
         e.preventDefault()
         const payLoad = {
+            eId: editId,
             rating: ratingsss,
             text: ratingsText
         }
+
+        console.log(payLoad)
         
-        addReview(payLoad)
+        
+
+        if(reviewEdit.edit === true){
+            
+            EditReview(reviewEdit.item.id, payLoad)
+        }else{
+            addReview(payLoad)
+        }
+        
         
     }
     
