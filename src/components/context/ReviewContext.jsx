@@ -1,4 +1,4 @@
-import {createContext, useState} from 'react'
+import {createContext, useState, useEffect} from 'react'
 import { v4 as uuidv4} from 'uuid'
 import ReviewData from '../../data/ReviewData'
 
@@ -7,11 +7,27 @@ import ReviewData from '../../data/ReviewData'
 const ReviewContext = createContext()
 
 export const ReviewProvider = ({children}) => {
-    const [reviews, setReviews] = useState(ReviewData)
+    const [isLoading, setIsLoading] = useState(true)
+    const [reviews, setReviews] = useState([])
     const [reviewEdit, setReviewEdit] = useState({
         item: {},
         edit: false
     })
+
+    useEffect(() => {
+        fetchReviews()
+    }, [])
+
+    const fetchReviews = async ()=>{
+        const response = await fetch(`http://localhost:5000/reviews?_sort=id&_order=desc`)
+
+        const data = await response.json()
+
+        console.log(data)
+
+        setReviews(data)
+        setIsLoading(false)
+    }
 
     const addReview = (payLoad) => {
         const reviewPayLoad = {
@@ -70,6 +86,7 @@ export const ReviewProvider = ({children}) => {
         value={{
             reviews, 
             reviewEdit,
+            isLoading,
             addReview, 
             deleteReview,
             fillForEdit,

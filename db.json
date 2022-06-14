@@ -1,0 +1,14 @@
+{
+  "reviews": [
+    {
+      "id": 2,
+      "rating": 8,
+      "text": "This is review item 2 coming from the backend"
+    },
+    {
+      "rating": 9,
+      "text": "New review item",
+      "id": 4
+    }
+  ]
+}

@@ -6,9 +6,13 @@ const ReviewStats = () => {
     const {reviews} = useContext(ReviewContext)
     const totalReviews = reviews.length
 
+    // reviews.map((item) => {console.log(item.rating)})
+
     let averageRating = reviews.reduce((acc, cur)=>{
         return acc + cur.rating
     }, 0) / totalReviews
+
+    console.log(averageRating)
 
     averageRating = averageRating.toFixed(1).replace(/[.,]0$/, '')//To remove 0 when its a whole number
 
