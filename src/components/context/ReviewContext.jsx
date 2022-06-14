@@ -19,7 +19,7 @@ export const ReviewProvider = ({children}) => {
     }, [])
 
     const fetchReviews = async ()=>{
-        const response = await fetch(`http://localhost:5000/reviews?_sort=id&_order=desc`)
+        const response = await fetch(`/reviews?_sort=id&_order=desc`)
 
         const data = await response.json()
 
@@ -29,17 +29,26 @@ export const ReviewProvider = ({children}) => {
         setIsLoading(false)
     }
 
-    const addReview = (payLoad) => {
-        const reviewPayLoad = {
-            id: uuidv4(), ...payLoad
-        }
 
-        console.log(reviewPayLoad)
+    //ADD REVIEW
+    const addReview = async (payLoad) => {
+        const response = await fetch('/reviews', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payLoad),
+
+        })
+
+        const data = await response.json()
+
+        // console.log(reviewPayLoad)
 
         // setReviews([payLoad, ...reviews])
 
         setReviews((prev)=>{
-            return([reviewPayLoad, ...prev])
+            return([data, ...prev])
         })
     }
     
