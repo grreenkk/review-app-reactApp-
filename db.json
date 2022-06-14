@@ -7,27 +7,13 @@
     },
     {
       "rating": 9,
-      "text": "New review item",
+      "text": "New review yuim",
       "id": 4
     },
     {
-      "rating": 5,
-      "text": "vbbcxbvcvcvbvhhmmhgh",
-      "id": 5
-    },
-    {
-      "text": "hello hello",
-      "id": 6
-    },
-    {
-      "rating": 9,
-      "text": "hello hello",
+      "rating": 2,
+      "text": "hello world",
       "id": 7
-    },
-    {
-      "rating": 4,
-      "text": "gfhjhfefhejffebfjefbe",
-      "id": 8
     }
   ]
 }

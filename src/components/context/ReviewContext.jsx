@@ -38,22 +38,21 @@ export const ReviewProvider = ({children}) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(payLoad),
-
         })
 
         const data = await response.json()
-
         // console.log(reviewPayLoad)
-
         // setReviews([payLoad, ...reviews])
-
         setReviews((prev)=>{
             return([data, ...prev])
         })
     }
     
+    const deleteReview = async (id) =>{
+        await fetch(`/reviews/${id}`, {
+            method: 'DELETE'
+        })
 
-    const deleteReview = (id) =>{
         if(window.confirm('Are you sure want to delete your review?')) {
             const currentReviews = reviews.filter((item)=>{ return item.id !== id})
             setReviews(currentReviews)
@@ -68,8 +67,18 @@ export const ReviewProvider = ({children}) => {
         })
     }
 
-    const EditReview = (id, upItem) => {
-        setReviews(reviews.map((item)=>(item.id === id ? { ...item, ...upItem} : item))) 
+    const EditReview = async (id, upItem) => {
+        const response = await fetch(`/reviews/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            }, 
+            body: JSON.stringify(upItem)
+        })
+
+        const data = await response.json()
+
+        setReviews(reviews.map((item)=>(item.id === id ? { ...item, ...data} : item))) 
         // const maniac = reviews.findIndex(items=> items.id === item.eId)
         // const manRev = reviews.filter(items=> items.id !== item.eId)
         //    setReviews(manRev)
